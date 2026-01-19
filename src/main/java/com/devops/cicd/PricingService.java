@@ -22,7 +22,7 @@ public final class PricingService {
     }
 
     public double shippingCost(double amount) {
-        if(amount >= 50){
+        if(amount >= this.config.getFreeShippingThreshold()){
             return 0;
         }else{
             return 4.99;

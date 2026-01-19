@@ -29,7 +29,13 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn -B package --file pom.xml
-    - name : Test with Maven
-      run : mvn clean test
+    - name : Unit Test
+      id: unit_test
+      run : mvn test -Dtest=com.devops.cicd.PricingServiceTest
+    - name : Integration Test
+      id : int_test
+      if : ${{ success() && steps.unit_test.conclusion == 'success' }}
+      run : mvn test -Dtest=com.devops.cicd.PricingIntegrationTest
     - name : Test quality code with Maven
+      if : ${{ success() && steps.int_test.conclusion == 'success' }}
       run : mvn verify -DskipTests

@@ -1,8 +1,8 @@
 package com.devops.cicd;
 
-import org.junit.Test;
-
-import static org.junit.Assert.assertEquals;
+// Change these imports to the Jupiter (JUnit 5) versions
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PricingServiceTest {
 
@@ -11,6 +11,11 @@ public class PricingServiceTest {
 
     @Test
     public void checkTax(){
-        assertEquals(120,service.applyVat(100));
+        double var1 = 10.0;
+        double var2 = 12.0;
+
+        // JUnit 5 syntax (expected, actual)
+        // You can now omit the delta if you wish, or add it as a 3rd param
+        assertEquals(var2, service.applyVat(var1));
     }
 }
